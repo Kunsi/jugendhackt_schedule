@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404, render
 from .models import Event, Room, ScheduleEntry
 
 
+TZ = "Europe/Berlin"
+
 
 def index(request):
     today = datetime.now().replace(hour=0, minute=0, second=0)
@@ -90,6 +92,7 @@ def schedule_json(request, slug):
             "end": (event.start + timedelta(days=event.duration_days+1)).strftime("%Y-%m-%d"),
             "daysCount": event.duration_days,
             "timeslot_duration": "00:05",
+            "time_zone_name": TZ,
             "rooms": [
                 {
                     "name": room.name,
@@ -133,9 +136,11 @@ def schedule_json(request, slug):
                     "description": None,
                     "recording_license": "",
                     "do_not_record": entry.recording_optout,
+                    "language": "",
                     "persons": [
                         {
                             "public_name": person.name,
+                            "name": person.name,
                         } for person in entry.persons.all()
                     ],
                     "links": [],
