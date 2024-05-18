@@ -137,7 +137,7 @@ def schedule_json(request, slug):
                     "description": None,
                     "recording_license": "",
                     "do_not_record": entry.recording_optout,
-                    "language": entry.language,
+                    "language": entry.language.short,
                     "persons": [
                         {
                             "public_name": person.name,
