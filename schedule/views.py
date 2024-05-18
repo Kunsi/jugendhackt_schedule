@@ -148,4 +148,4 @@ def schedule_json(request, slug):
                 })
         schedule["conference"]["days"].append(day_schedule)
 
-    return JsonResponse(schedule)
+    return JsonResponse({"schedule": schedule})
