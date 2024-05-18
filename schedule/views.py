@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
@@ -122,8 +123,8 @@ def schedule_json(request, slug):
                 day_schedule["rooms"][room.name].append({
                     "id": entry.pk,
                     "guid": entry.uuid,
-                    "date": entry.start.isoformat(),
-                    "start": entry.start.strftime("%H:%M"),
+                    "date": entry.start.astimezone(ZoneInfo(TZ)).isoformat(),
+                    "start": entry.start.astimezone(ZoneInfo(TZ)).strftime("%H:%M"),
                     "logo": None,
                     "duration": entry.duration_hhmm,
                     "room": room.name,
