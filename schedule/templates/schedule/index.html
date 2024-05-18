@@ -10,7 +10,7 @@
                 <th scope="col">Start</th>
                 <th scope="col">End</th>
 
-                <th scope="col" colspan=2>Export</th>
+                <th scope="col" colspan=3>Export</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +22,7 @@
 
                 <td><a href="{% url 'schedule_html' event.acronym %}">HTML</a></td>
                 <td><a href="{% url 'schedule_xml' event.acronym %}">XML</a></td>
+                <td><a href="{% url 'schedule_json' event.acronym %}">JSON</a></td>
             </tr>
 {% endfor %}
         </tbody>
